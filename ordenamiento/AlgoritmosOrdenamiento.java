@@ -3,65 +3,65 @@ package ordenamiento;
 public class AlgoritmosOrdenamiento {
 
     /**
-     * This is a function to swap values in an array
+     * Esta función intercambia los valores en dos posiciones de un array
      *
      * @param array
-     * @param i first position
-     * @param j second position
+     * @param i primera posición
+     * @param j segunda posición
      */
-    public static void swap(int[] array, int i, int j) {
+    public static void intercambiar(int[] array, int i, int j) {
         int aux = array[i];
         array[i] = array[j];
         array[j] = aux;
     }
 
-    public static void bubbleSort(int[] array) {
-        boolean swapped = false;
-        int last = 0;
+    public static void burbuja(int[] array) {
+        boolean intercambiado = false;
+        int ultimo = 0;
 
         do {
-            swapped = false;
-            for (int i = 0; i < (array.length - 1 - last); i++) {
+            intercambiado = false;
+            for (int i = 0; i < (array.length - 1 - ultimo); i++) {
                 if (array[i] > array[i + 1]) {
-                    swap(array, i, i + 1);
-                    swapped = true;
+                    intercambiar(array, i, i + 1);
+                    intercambiado = true;
                 }
             }
-            last++;
-        } while (swapped);
+            ultimo++;
+        } while (intercambiado);
     }
 
-    public static void selectionSort(int[] array) {
-        int min; // here we are going to save the minimum value
-        for (int index = 0; index < array.length - 1; index++) {
-            min = index; // first value is allways the minimum
-            for (int range = index + 1; range < array.length; range++) {
-                /* then, we compare if the next position is lower than the 
-                minimum */
-                min = (array[range] < array[min]) ? range : min;
+    public static void seleccion(int[] array) {
+        int min; // aquí guardamos el valor mínimo
+        for (int indice = 0; indice < array.length - 1; indice++) {
+            min = indice; // el primer valor es siempre el mínimo
+            for (int recorrido = indice + 1; recorrido < array.length; recorrido++) {
+                /* ahora comparamos si la siguiente posición tiene un valor 
+                menor del que hemos guardado */
+                min = (array[recorrido] < array[min]) ? recorrido : min;
             }
-            /* if the value has changed, we swap the value in each position of 
-            the array */
-            if (min != index) {
-                swap(array, min, index);
+            /* si el valor ha cambiado, intercambiamos posiciones */
+            if (min != indice) {
+                intercambiar(array, min, indice);
             }
         }
     }
 
-    public static void insertionSort(int[] array) {
-        int previous, valueToInsert;
+    public static void insercion(int[] array) {
+        int previo, valorInsercion;
         
-        /* we start the first loop in the position '1' of the array */
-        for (int index = 1; index < array.length; index++) { 
-            valueToInsert = array[index]; // we save the value to insert
-            previous = index - 1; // also the previous value, to compare
+        /* comenzamos el primer bucle en la posición '1' del array */
+        for (int indice = 1; indice < array.length; indice++) { 
+            valorInsercion = array[indice]; // guardamos el valor a insertar
+            previo = indice - 1; // además del valor previo, que compararemos
             
-            /* if the value of 'previous' is negative, we are out of bounds */
-            while (previous >= 0 && (array[previous] > valueToInsert)) {
-                array[previous + 1] = array[previous];
-                previous--;
+            /* si el valor de 'previo' es negativo, nos hemos salido de los 
+            límites del array */
+            while (previo >= 0 && (array[previo] > valorInsercion)) {
+                array[previo + 1] = array[previo];
+                previo--;
             }
-            array[previous + 1] = valueToInsert;
+            array[previo + 1] = valorInsercion;
         }
     }
 
